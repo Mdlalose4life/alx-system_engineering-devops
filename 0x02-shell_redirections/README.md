@@ -1,5 +1,6 @@
 Shell, I/O Redirections and filters
-1. Hello, world
-2. Confused smile1e
-3. 2-hellofile
-`
+0. Hello, world
+1. 1-confused_smiley
+2. 2-hellofile
+3.  Displaying contents of two files simutaneously 
+4.
