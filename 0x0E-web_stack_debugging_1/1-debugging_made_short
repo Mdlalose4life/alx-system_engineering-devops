@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#Debbuging the Nginx
+
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo service nginx restart
+kill -o nginx
