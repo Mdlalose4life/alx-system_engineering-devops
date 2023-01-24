@@ -1,6 +1,6 @@
 # using puppet to install nginx and set it up
-exec {'/usr/bin/env apt-get update' : }
--> package {'nginx':
+exec {'/usr/bin/env apt-get -y update' : }
+-> package { 'nginx':
   ensure => installed,
 }
 -> file { '/var/www/html/index.html':
