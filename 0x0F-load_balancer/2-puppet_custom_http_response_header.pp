@@ -6,12 +6,12 @@ exec {'/usr/bin/env apt-get -y update' : }
 -> file { '/var/www/html/index.html':
   content => 'Hello World',
 }
--> file_line { 'add header'
+-> file_line { 'add header' :
   ensure => present,
   path   => '/etc/nginx/sites-available/default',
   line   => "\tadd_header X-served-By ${hostname};",
   after  => 'server_name_;',
 }
--> service{'nginx':
+-> service{ 'nginx':
   ensure => running,
 }
