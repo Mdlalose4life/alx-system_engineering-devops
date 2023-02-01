@@ -1,3 +1,4 @@
 # A Bash script that accepts one argument
 # The script that accepts one argument
-sudo whoami
+
+sudo -u "$1" whoami
