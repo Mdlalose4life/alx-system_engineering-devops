@@ -10,4 +10,4 @@ chmod 644 /etc/nginx/nginx.conf
 # kill aparche process
 pkill apache2
 # restart nginx service
-sudo -u service nginx start
+sudo -u nginx service nginx start
