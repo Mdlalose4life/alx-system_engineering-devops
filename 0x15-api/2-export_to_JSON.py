@@ -13,18 +13,18 @@ if __name__ == '__main__':
 
 """Getting the username from api"""
 response = requests.get(url)
-username = response.json('username')
+username = response.json().get('username')
 
 """Getting the todos of the employees from api"""
 response = requests.get(url + "/todos")
-todos = response.json()
+tasks = response.json()
 
 """Making a dictionary of the employees and todos"""
 dictionary = {ID: []}
-for todo in todos:
+for task in tasks:
     dictionary[ID].append({
-        "todo": todo.get('title'),
-        "completed": todo.get('completed'),
+        "todo": task.get('title'),
+        "completed": task.get('completed'),
         "username": username
     })
 
