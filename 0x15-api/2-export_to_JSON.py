@@ -23,7 +23,7 @@ tasks = response.json()
 dictionary = {ID: []}
 for task in tasks:
     dictionary[ID].append({
-        "todo": task.get('title'),
+        "task": task.get('title'),
         "completed": task.get('completed'),
         "username": username
     })
