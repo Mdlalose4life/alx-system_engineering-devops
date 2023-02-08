@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
 """Getting the username from api"""
 response = requests.get(url)
-username = response.json(url)
+username = response.json('username')
 
 """Getting the todos of the employees from api"""
 response = requests.get(url + "/todos")
