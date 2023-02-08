@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     """Printing the information about the employees"""
     print("Employee {} is done with tasks({}/{}):"
-        .format(employee_Name, complete, len(employee_TodoList)))
+          .format(employee_Name, complete, len(employee_TodoList)))
 
     """Printing the list of completed tasks of the employees"""
     for task in complete_task:
