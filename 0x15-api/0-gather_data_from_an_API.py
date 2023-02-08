@@ -5,7 +5,7 @@ information about the emplyee's TODO list progress"""
 import requests
 import sys
 
-if '__name__' == '__main__':
+if __name__ == '__main__':
     ID = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/users" + "/" + ID
 
@@ -15,7 +15,7 @@ if '__name__' == '__main__':
 
     """Getting the todo list of the employee"""
     response = requests.get(url + "/todos")
-    employee_TodoList = response.json().get('items')
+    employee_TodoList = response.json()
     complete = 0
     complete_task = []
 
