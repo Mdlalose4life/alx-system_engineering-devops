@@ -22,8 +22,8 @@ if '__name__' == '__main__':
     """Getting the list of completed tasks of the employees"""
     for task in employee_TodoList:
         if task.get('completed'):
-            complete += 1
             complete_task.append(employee_TodoList)
+            complete += 1
 
     """Printing the information about the employees"""
     print("Employee {} is done with tasks({}/{}):"
