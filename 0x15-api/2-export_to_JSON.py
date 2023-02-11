@@ -3,31 +3,29 @@
 Script to export the imployees information to a JSON file.
 """
 
-import requests
 import json
+import requests
 import sys
 
+
 if __name__ == '__main__':
-    ID = sys.argv[1]
-    url = "https://jsonplaceholder.typicode.com/users" + "/" + ID
+    employeeId = sys.argv[1]
+    baseUrl = "https://jsonplaceholder.typicode.com/users"
+    url = baseUrl + "/" + employeeId
 
-"""Getting the username from api"""
-response = requests.get(url)
-username = response.json().get('username')
+    response = requests.get(url)
+    username = response.json().get('username')
 
-"""Getting the todos of the employees from api"""
-response = requests.get(url + "/todos")
-tasks = response.json()
+    todoUrl = url + "/todos"
+    response = requests.get(todoUrl)
+    tasks = response.json()
 
-"""Making a dictionary of the employees and todos"""
-dictionary = {ID: []}
-for task in tasks:
-    dictionary[ID].append({
-        "task": task.get('title'),
-        "completed": task.get('completed'),
-        "username": username
-    })
-
-"""Exporting the dictionary to a JSON file"""
-with open('{}.json'.format(ID), 'w') as f:
-    json.dump(dictionary, f)
+    dictionary = {employeeId: []}
+    for task in tasks:
+        dictionary[employeeId].append({
+            "task": task.get('title'),
+            "completed": task.get('completed'),
+            "username": username
+        })
+    with open('{}.json'.format(employeeId), 'w') as filename:
+        json.dump(dictionary, filename)
