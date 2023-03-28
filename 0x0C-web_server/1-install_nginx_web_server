@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Scrip that Installs nginx server
+# Scrip that Install nginx server
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'

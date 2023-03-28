@@ -1,12 +1,21 @@
 # configure the file
-file_line {'password-authenticate':
-  ensure => 'present',
-  path    => '/etc/ssh/ssh_config',
-  line   => '    PasswordAuthentication no'
+
+package {
+  'nginx':
+  ensure => installed,
 }
 
-file_line {'private-key':
-  ensure => 'present',
-  path    => '/etc/ssh/ssh_config',
-  line    => '    IdentityFile ~/.ssh/school'
+file {
+  '/var/www/html/index.nginx-debian.html'
+  content => 'Hello World',
+}
+
+file_line {'configure redirection':
+  path => '/etc/nginx/sites-available/default',
+  after => 'server_name _'
+  line => "\n\tlocation /redirect_me{\n\treturn 301 https://www.youtube.com/watch?v=ceRM2b00Mf4; \n\t}\n",
+}
+
+service {'nginx':
+  ensure => running
 }
