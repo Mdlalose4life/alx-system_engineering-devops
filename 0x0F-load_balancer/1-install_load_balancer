@@ -1,12 +1,10 @@
 #!/user/bin/env bash
-"""
-script that installs and configure HAproxy on your lb-01 server.
-   then
-1. Configure HAproxy so that it send traffic to web-01 and web-02
-2. Distribute requests using a roundrobin algorithm
-3. Make sure that HAproxy can be managed via an init script
-4. Make sure that your servers are configured with the right hostnames.
-"""
+# script that installs and configure HAproxy on your lb-01 server.
+# 1. Configure HAproxy so that it send traffic to web-01 and web-02
+# 2. Distribute requests using a roundrobin algorithm
+# 3. Make sure that HAproxy can be managed via an init script
+# 4. Make sure that your servers are configured with the right hostnames.
+
 sudo apt-get -y update
 sudo apt-get install haproxy
 
@@ -23,7 +21,7 @@ backend olukoyanic-backend
     server 75007-web-01 52.86.25.87 check
     server 75007-web-02 100.24.240.70 check
 "
-echo "$server_config" > /ect/haproxy/haproxy.cfg
-echo "ENABLE=1" > /ect/deafault/haproxy
+echo "$server_config"  | sudo tee -a /ect/haproxy/haproxy.cfg
+echo "ENABLE=1" | sudo tee -a /ect/default/haproxy
 
 service haproxy start
