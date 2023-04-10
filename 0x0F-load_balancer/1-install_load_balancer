@@ -1,4 +1,4 @@
-#!/user/bin/env bash
+#!/usr/bin/env bash
 # script that installs and configure HAproxy on your lb-01 server.
 # 1. Configure HAproxy so that it send traffic to web-01 and web-02
 # 2. Distribute requests using a roundrobin algorithm
