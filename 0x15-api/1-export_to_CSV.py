@@ -10,7 +10,7 @@ if __name__ == '__main__':
     ID = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/users" + "/" + ID
 
-    """gettint usernames of the emplyees"""
+    """getting usernames of the emplyees"""
     response = requests.get(url)
     username = response.json().get('username')
 
