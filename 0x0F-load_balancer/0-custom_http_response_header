@@ -13,13 +13,13 @@ sudo ufw allow 'Nginx HTTP'
 sudo mkdir -p /var/www/html
 
 #Read and write permission for everyone and write permission for the owner. 
-sudo chmod -R 755/var/www
+sudo chmod -R 755 /var/www
 
 #Creating a web page
-echo "Hellow world!" > /var/www/html/index.html
+echo "Hellow world!" | sudo tee -a /var/www/html/index.html
 
 #404 error page
-echo "Ceci n'est pas une page" > /var/www/html/404.html
+echo "Ceci n'est pas une page" | sudo tee -a /var/www/html/404.html
 
 replacement_string="server_name_; \n\tadd_header X-Served-By \$hostname;\n\trewite ^\/redirect_me https:\/\/www.blog.olukoyainc.com permanent;"
 sudo sed -i "s/server_name _;/$replacement_string" /ect/nginx/sites-enabled/default
