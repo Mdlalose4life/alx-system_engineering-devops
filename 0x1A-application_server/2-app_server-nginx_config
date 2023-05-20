@@ -30,8 +30,8 @@ server {
         index index.html index.htm index.nginx-debian.html;
 
         server_name _;
-        rewrite ^/redirect_me https://github.com/yoliyolanda permanent;
-        rewrite ^/redirect_me https://github.com/yoliyolandapermanent;
+        rewrite ^/redirect_me https://www.blog.ehoneahobed.com permanent;
+        rewrite ^/redirect_me https://www.blog.ehoneahobed.com permanent;
 
         location / {
                 # First attempt to serve request as file, then
