@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The script that reloads the Gunicorn in gracefully manner.
+# The script that reloads the Gunicorn in gracefully
 
 # for i in $(pgrep gunicorn);do
 #     if ! kill -HUP "$i"; then
