@@ -8,11 +8,12 @@ sudo apt-get update
 #installing nginx
 sudo apt-get -y install nginx
 
-#configuring Nginx by allowing requests at port 80(HTTP) 
+#configuring Nginx by allowing requests at port 80(HTTP)
 sudo ufw allow 'Nginx HTTP'
-sudo mkdir -p /var/www/html
+#Create directory for web page and error pages
+sudo mkdir -p /var/www/html /var/www/error
 
-#Read and write permission for everyone and write permission for the owner. 
+#Read and write permission for everyone and write permission for the owner.
 sudo chmod -R 755 /var/www
 
 #Creating a web page
@@ -21,10 +22,24 @@ echo "Hellow world!" | sudo tee -a /var/www/html/index.html
 #404 error page
 echo "Ceci n'est pas une page" | sudo tee -a /var/www/html/404.html
 
-replacement_string="server_name_; \n\tadd_header X-Served-By \$hostname;\n\trewite ^\/redirect_me https:\/\/www.blog.olukoyainc.com permanent;"
-sudo sed -i "s/server_name _;/$replacement_string" /ect/nginx/sites-enabled/default
+server_config=\
+"server {
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html;
+        server_name _;
+        add_header X-Served-By \$hostname;
+        location / {
+                try_files \$uri \$uri/ = 404;
+        }
+        if (\$request_filename ~ redirect_me){
+                rewrite ^ https://www.blog.ehoneahobed.com permanent;
+        {
+        error_page 404 /404.html;
+        location = /404.html{
+                internal;
+        }
 
-replacement_string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-sudo sed -i "s/listen 80 default_server;/$replacement_string/" /ect/nginx/sites-enabled/default
-
-sudo service nginx start
+}"
+echo "$server_config" | sudo tee -a /etc/nginx/sites-enabled/default
+sudo service nginx restart
